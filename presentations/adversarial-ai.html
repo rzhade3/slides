@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Intro to Adversarial AI</title>
+
+		<link rel="stylesheet" href="../dist/reset.css">
+		<link rel="stylesheet" href="../dist/reveal.css">
+		<link rel="stylesheet" href="../dist/theme/simple.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+                <section id="title">
+                    <h1>Introduction to Adversarial AI</h1>
+                    <h3>By <a href="https://github.com/rzhade3">@rzhade3</a></h3>
+                </section>
+                <section id="toc" data-markdown>
+                    <textarea data-template>
+                        1. [Introduction to Machine Learning](#intro-ml)
+                        1. [Introduction to Application Security](#intro-appsec)
+                        1. [Comparing ML Sec with traditional AppSec](#compare-contrast)
+                        1. [Confidentiality](#confidentiality)
+                            * [Model Inversion](#model-inversion)
+                            * [Model Stealing](#model-stealing)
+                        1. [Integrity](#integrity)
+                            * [Dataset Poisoning](#dataset-poisoning)
+                            * [Evasion Attacks](#evasion)
+                            * [Prompt Injection](#prompt-injection)
+                        1. [Availability](#availability)
+                            * [Denial of Service](#dos)
+                        1. [Conclusion](#conclusion)
+                    </textarea>
+                </section>
+				<section id="intro-ml">
+                    <section>
+                        <h2>How do ML Systems Work?</h2>
+                    </section>
+                    <section><img src="../public/ml-system.png"></section>
+                </section>
+                <section id="intro-appsec">
+                    <section>
+                        <h2>What is Application Security?</h2>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## CIA
+
+                            Common acronym to describe main security goals
+
+                            * **C**onfidentiality: Maintain privacy of data
+                            * **I**ntegrity: Maintain trustworthy and accurate data + systems
+                            * **A**vailability: System should always be readily accessible
+                        </textarea>
+                    </section>
+                </section>
+				<section id="compare-contrast">
+                    <section>
+                        <h2>ML Models have vulnerabilities too!</h2>
+                    </section>
+                    <section data-markdown>
+                        <textarea data-template>
+                            | Similar | Different |
+                            | --- | --- |
+                            | ML Infrastructure is built on top of normal code | Machine Learning models tend to be black boxes with often non deterministic behavior |
+                            | DoS, Supply Chain issues also still manifest | *Lots* of side channel information is disclosed. |
+                        </textarea>
+                    </section>
+                </section>
+                <section id="confidentiality">
+                    <section>
+                        <h2>Confidentiality</h2>
+                    </section>
+                    <section id="model-inversion" data-markdown>
+                        <textarea data-template>
+                            ## Model Inversion
+
+                            Reverse engineer data that was used to train a model by making multiple queries to it
+
+                            **How to Fix?**
+
+                            Differential Privacy
+                        </textarea>
+                    </section>
+                    <section id="model-stealing" data-markdown>
+                        <textarea data-template>
+                            ## Model Stealing
+
+                            Querying a model enough times can allow you to steal it, by training on the model's output
+
+                            **How to fix?**
+
+                            Rate limiting
+                        </textarea>
+                    </section>
+                </section>
+                <section id="integrity">
+                    <section>
+                        <h2>Integrity</h2>
+                    </section>
+                    <section id="dataset-poisoning" data-markdown>
+                        <textarea data-template>
+                            ## Dataset Poisoning
+
+                            Attack where attacker manipulates training data to influence model behavior
+
+                            * Especially vulnerable if training set is sourced publicly
+                            * Can lead to backdoors and other unwanted behavior
+
+                            **How to fix?**
+
+                            Choose and clean dataset carefully
+                        </textarea>
+                    </section>
+                    <section id="evasion" data-markdown>
+                        <textarea data-template>
+                            ## Evasion Attacks
+
+                            Attacks wherein a small change to an input results in incorrect classification
+
+                            * *Terminology:* data is "perturbed" when it is changed
+                            * Can be used to bypass security controls implemented by an ML model
+
+                            **How to fix?**
+
+                            Train with a robust dataset
+                        </textarea>
+                    </section>
+                    <section id="prompt-injection" data-markdown>
+                        <textarea data-template>
+                            ## Prompt Injection
+
+                            *(Specific to LLMs)* Trick a LLM into changing its default behavior by a carefully crafted input prompt
+
+                            **How to Fix?**
+
+                            ???
+                        </textarea>
+                    </section>
+                </section>
+                <section id="availability">
+                    <section>
+                        <h2>Availability</h2>
+                    </section>
+                    <section id="dos" data-markdown>
+                        <textarea data-template>
+                            ## Denial of Service
+
+                            ML Models can be very compute intensive, and as such are subject to DoS attacks
+
+                            **How to fix?**
+
+                            * Rate limiting
+                            * Monitoring requests
+                        </textarea>
+                    </section>
+                </section>
+                <section id="conclusion">
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Key Takeaways
+
+                            To protect your systems, ensure that you are:
+                            1. Monitoring all requests + system performance
+                            1. Rate limiting
+                            1. Training your models with robust, curated data
+                            1. Implementing other supplementary security controls
+                        </textarea>
+                    </section>
+                </section>
+                <section id="learn-more">
+                    <section data-markdown>
+                        <textarea data-template>
+                            ## Learn More
+
+                            * [Adversarial AI Reading List](https://github.com/rzhade3/adversarial-ai-reading-list)
+                        </textarea>
+                    </section>
+                </section>
+			</div>
+		</div>
+
+		<script src="../dist/reveal.js"></script>
+		<script src="../plugin/notes/notes.js"></script>
+		<script src="../plugin/markdown/markdown.js"></script>
+		<script src="../plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
