@@ -23,8 +23,8 @@
                 <section id="about-me">
                     <h2>About Me</h2>
                     <ul>
-                        <li>Product Security Engineer</li>
                         <li><strong>Rahul Zhade</strong></li>
+                        <li>Product Security Engineer</li>
                         <li><a href="https://github.com/rzhade3">GitHub</a></li>
                     </ul>
                 </section>
@@ -34,12 +34,15 @@
                         <li>Intro to AI</li>
                         <li>SDLC Vulnerabilities from AI</li>
                         <li>Product Vulnerabilities through AI</li>
+                        <li>MCP Security</li>
                         <li>Responsible AI Design</li>
                         <li>Incident Response</li>
                     </ol>
                 </section>
                 <section id="intro-to-ai">
-                    <h2>Module: Intro to AI</h2>
+                    <section>
+                        <h2>Module: Intro to AI</h2>
+                    </section>
                     <section>
                         <h3>AI Lifecycle</h3>
                         <img src="../public/ai-security-2025/ai-lifecycle.png" alt="AI Lifecycle">
@@ -68,12 +71,14 @@
                     </section>
                 </section>
                 <section id="security-considerations">
-                    <h2>Module: Security Considerations for AI SDLC</h2>
+                    <section>
+                        <h2>Module: Security Considerations for AI SDLC</h2>
+                    </section>
                     <section>
                         <h3>AI Usages in SDLC</h3>
                         <ul>
                             <li><strong>Constructive</strong>: Copilot, Cursor, etc.</li>
-                            <li><strong>Defensive</strong>: CI, Copilot Suggestions, DryRun, etc.</li>
+                            <li><strong>Defensive</strong>: CI, Copilot Suggestions, etc.</li>
                         </ul>
                     </section>
                     <section>
@@ -103,14 +108,42 @@
                     </section>
                 </section>
                 <section id="product-vulnerabilities">
-                    <h2>Module: Product Vulnerabilities from AI</h2>
+                    <section>
+                        <h2>Module: Product Vulnerabilities</h2>
+                    </section>
                     <section>
                         <h3>Types of Vulnerabilities</h3>
-                        <ul>
-                            <li><strong>Data Lifecycle</strong>: Sensitive Info Disclosure, Data/Model Poisoning</li>
-                            <li><strong>Infrastructure</strong>: Supply Chain Vulns, Unbounded Consumption, Model Theft</li>
-                            <li><strong>Emergent Issues</strong>: Prompt Injection, Improper Output Handling, Excessive Agency, Hallucination</li>
-                        </ul>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Data Lifecycle</th>
+                                    <th>Infrastructure</th>
+                                    <th>Emergent Issues</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Sensitive Info Disclosure</td>
+                                    <td>Supply Chain Vulns</td>
+                                    <td>Prompt Injection</td>
+                                </tr>
+                                <tr>
+                                    <td>Data/Model Poisoning</td>
+                                    <td>Unbounded Consumption</td>
+                                    <td>Improper Output Handling</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Model Theft</td>
+                                    <td>Excessive Agency</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Hallucination</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </section>
                     <section>
                         <h3>Data Lifecycle</h3>
@@ -127,14 +160,15 @@
                         <ul>
                             <li>PII Redaction</li>
                             <li>Careful Data Selection</li>
-                            <li>Differential Privacy (if needed)</li>
+                            <li>Differential Privacy (if possible)</li>
                         </ul>
                     </section>
                     <section>
                         <h3>Infrastructure</h3>
                         <blockquote>AI Infrastructure is non-trivial</blockquote>
                         <ul>
-                            <li>Expensive, custom</li>
+                            <li>Expensive</li>
+                            <li>Bespoke dependencies</li>
                             <li>Unsafe defaults</li>
                         </ul>
                     </section>
@@ -148,7 +182,7 @@
                     </section>
                     <section>
                         <h3>Emergent Issues</h3>
-                        <blockquote>People don’t know how to use AI</blockquote>
+                        <blockquote>People don't know how to use AI</blockquote>
                         <ul>
                             <li>Ambiguous intent</li>
                             <li>Misunderstood APIs</li>
@@ -164,7 +198,7 @@
                         <h3>Controls</h3>
                         <ul>
                             <li>Context-aware output encoding</li>
-                            <li>Don’t allow unsanitized output in sensitive contexts (UIs, shells)</li>
+                            <li>Don't allow unsanitized output in sensitive contexts (UIs, shells)</li>
                             <li>Use HITL for state changes</li>
                         </ul>
                     </section>
@@ -186,10 +220,20 @@
                         <img src="../public/ai-security-2025/prompt-injection.png" alt="Prompt Injection">
                     </section>
                     <section>
+                        <h3>Types of Prompt Injection</h3>
+                        <ul>
+                            <li><strong>User Prompt Injection (UPIA)</strong>: Jailbreaks, etc.</li>
+                            <li><strong>Cross Prompt Injection (XPIA)</strong>: MCP Vulnerabilities, etc.</li>
+                        </ul>
+                    </section>
+                    <section>
                         <h3>Prompt Injection Controls</h3>
                         <ul>
                             <li>Clearer context</li>
                             <li>Content filtering</li>
+                            <li>Dual LLM paradigm</li>
+                            <li>Nanny Agents</li>
+                            <li><a href="https://arxiv.org/abs/2503.18813">CaMeL</a>/ Information Control Flow</li>
                         </ul>
                     </section>
                     <section>
@@ -199,9 +243,48 @@
                             <li>HITL: Keep human in the loop</li>
                         </ul>
                     </section>
+                    <section>
+                        <h3>Hallucination Controls</h3>
+                        <ul>
+                            <li>Use Retrieval Augmented Generation (RAG)</li>
+                            <li>Off topic filtering</li>
+                        </ul>
+                    </section>
+                </section>
+                <section id="mcp-security">
+                    <section>
+                        <h2>Module: MCP Security</h2>
+                    </section>
+                    <section>
+                        <h3>Issues with MCP</h3>
+                        <ul>
+                            <li>Authorization</li>
+                            <li>Supply Chain</li>
+                            <li>XPIA Risk</li>
+                            <li>Context Poisoning</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3>Using MCP Safely</h3>
+                        <ol>
+                            <li>Audit source code for any local MCP</li>
+                            <li>Use credentials with least privilege</li>
+                            <li>Use firewalls to ensure agents stay on guardrails</li>
+                            <li>Properly define resources and tools</li>
+                        </ol>
+                    </section>
+                    <section>
+                        <h3>MCP Security Specifications</h3>
+                        <ul>
+                            <li><a href="https://arxiv.org/html/2506.01333v1">Enhanced Tool Definition Interface</a></li>
+                            <li>Oauth 2.0 Support</li>
+                        </ul>
+                    </section>
                 </section>
                 <section id="responsible-ai">
-                    <h2>Module: Responsible AI</h2>
+                    <section>
+                        <h2>Module: Responsible AI</h2>
+                    </section>
                     <section>
                         <h3>Good Design Prevents Footguns</h3>
                     </section>
@@ -224,9 +307,21 @@
                             <li>Prevent harmful/off-topic content</li>
                         </ul>
                     </section>
+                    <section>
+                        <h3>Agentic Security Principles</h3>
+                        <ol>
+                            <li>Make sure agents can be turned off</li>
+                            <li>Network interactions should be logged</li>
+                            <li>Log who initiated the action, and input context</li>
+                            <li>Run workflows in ephemeral environments</li>
+                            <li>Do not use user secrets unless explicitly defined</li>
+                        </ol>
+                    </section>
                 </section>
                 <section id="incident-response">
-                    <h2>Module: Incident Response for AI</h2>
+                    <section>
+                        <h2>Module: Incident Response for AI</h2>
+                    </section>
                     <section>
                         <h3>Principles</h3>
                         <ul>
@@ -243,8 +338,13 @@
                         <h3>Key Takeaways</h3>
                         <ul>
                             <li>Secure the whole AI lifecycle</li>
-                            <li><strong>Responsible AI Design!</strong></li>
+                            <li><strong>Responsible AI Design!</strong>
+                                <ul>
+                                    <li>HITL HITL HITL</li>
+                                </ul>
+                            </li>
                             <li>Same risks, higher stakes</li>
+                            <li>Don't trust AI blindly</li>
                         </ul>
                     </section>
                 </section>
@@ -252,8 +352,8 @@
                     <h2>Appendix</h2>
                     <ul>
                         <li><a href="https://github.com/rzhade3/adversarial-ai-reading-list">Adversarial AI Reading List</a></li>
-                        <li><a href="https://saif.google">saif.google</a></li>
                         <li><a href="https://embracethered.com">embracethered.com</a></li>
+                        <li><a href="https://simonwillison.net/tags/security/">Simon Willison Blog</a></li>
                     </ul>
                 </section>
 			</div>
