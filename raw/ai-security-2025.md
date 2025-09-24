@@ -1,19 +1,13 @@
----
-title: AI Security in 2025
-theme: black
-transition: slide
----
-
 # AI Security in 2025
-### Or: How I learned to stop worrying and love the agent
 
 ---
 
 ## About Me
 
 - **Rahul Zhade**
-- Product Security Engineer
-- [GitHub](https://github.com/rzhade3)
+- Sr. Product Security Engineer [@GitHub](https://github.com/rzhade3)
+
+![GitHub Profile picture](https://avatars.githubusercontent.com/u/21364815?v=4)
 
 ---
 
@@ -27,21 +21,21 @@ transition: slide
 
 ---
 
-## Module: Intro to AI
+## Intro to AI
 
----
+--
 
 ### AI Lifecycle
 
-![AI Lifecycle](./public/ai-security-2025/ai-lifecycle.png)
+![AI Lifecycle](./../public/ai-security-2025/ai-lifecycle.png)
 
----
+--
 
 ### Secure AI Framework
 
-![Secure AI Framework screeenshot](./public/ai-security-2025/saif.png)
+![Secure AI Framework screeenshot](./../public/ai-security-2025/saif.png)
 
----
+--
 
 ### AI vs Traditional Security
 
@@ -49,63 +43,62 @@ transition: slide
 - Side Channels
 - Non-determinism
 - Lack of explainability
-- Greenfield! Lack of standards
+- Lack of standards
 
----
+--
 
 ### AI Usages in Software
 
 - **Constructive**
-  - Copilot, Cursor, etc.
+  - AI that helps build software
 - **Defensive**
-  - Copilot Suggestions
+  - AI that helps secure software (e.g. CI)
 - **Integrated**
-  - Rest of this talk :)
+  - AI that is part of the product
 
 ---
 
-## Module: Security Considerations for AI SDLC
+## Security Considerations for AI SDLC
 
----
+--
 
 ### AI Usages in SDLC
 - **Constructive:**
   - Copilot, Cursor, etc.
 - **Defensive:**
-  - CI, Copilot Suggestions, etc.
+  - CI, Copilot Code Review, etc.
 
----
+--
 
 ### Constructive AI Risks
 
 - Prone to hallucinations
-  - e.g., Package squatting
-- Can scoop up data
-  - Context may contain sensitive info
+  - e.g., [Slopsquatting](https://en.wikipedia.org/wiki/Slopsquatting)
+- Can ingest and possibly exfiltrate sensitive data
 
----
+--
 
 ### Controls to Apply
 
 - Properly review suggested code
-- Use context exclusions
+- Use [content exclusions](https://docs.github.com/en/copilot/how-tos/configure-content-exclusion)
 - Plan architecture in advance
 - Add context via comments
-- Use static/dynamic analysis
+- Use static and dynamic analysis
 
----
+--
 
 ### Defensive AI
 
 - More context-aware than SAST
 - Easier rule writing
-- Still prone to hallucinations, prompt injection
+- Prone to hallucinations, prompt injection
 
 ---
 
-## Module: Product Vulnerabilities
+## Product Vulnerabilities from AI
 
----
+--
 
 ### Types of Vulnerabilities
 
@@ -116,7 +109,7 @@ transition: slide
 | | Model Theft | Excessive Agency |
 | | | Hallucination |
 
----
+--
 
 ### Data Lifecycle
 
@@ -127,7 +120,7 @@ transition: slide
 - Huge training datasets
 - **Control:** Only use trusted, secure data
 
----
+--
 
 ### Data Lifecycle Controls
 
@@ -135,7 +128,7 @@ transition: slide
 - Careful Data Selection
 - Differential Privacy (if possible)
 
----
+--
 
 ### Infrastructure
 
@@ -145,15 +138,15 @@ transition: slide
 - Bespoke dependencies
 - Unsafe defaults
 
----
+--
 
 ### Infrastructure Controls
 
-- CI/CD pipelines (e.g., Wiz)
+- CI/CD pipelines (e.g., Wiz, TFSec)
 - Rate limiting
 - Logging
 
----
+--
 
 ### Emergent Issues
 
@@ -163,15 +156,15 @@ transition: slide
 - Misunderstood APIs
 - Prompt Injection, Excessive Agency, etc.
 
----
+--
 
 ### Improper Output Handling
 
 > Output from LLMs must be sanitized
 
-![Improper Output Handling](./public/ai-security-2025/xss.png)
+![Improper Output Handling](./../public/ai-security-2025/xss.png)
 
----
+--
 
 ### Controls
 
@@ -179,15 +172,15 @@ transition: slide
 - Don't allow unsanitized output in sensitive contexts (UIs, shells)
 - Use HITL for state changes
 
----
+--
 
 ### Excessive Agency
 
 > AI may hallucinate or take wrong actions
 
-![Excessive Agency](./public/ai-security-2025/excessive-agency.png)
+![Excessive Agency](./../public/ai-security-2025/excessive-agency.png)
 
----
+--
 
 ### Controls
 
@@ -195,27 +188,28 @@ transition: slide
 - Responsible agent design
 - Educate users
 
----
+--
 
 ### Hallucination / Misinformation
 
 - Inform users of AI limitations
 - HITL: Keep human in the loop
 
----
+--
 
 ### Hallucination Controls
 
 - Use Retrieval Augmented Generation (RAG)
 - Off topic filtering
+- User disclosures that AI may hallucinate
 
----
+--
 
 ### Prompt Injection
 
-![Prompt Injection](./public/ai-security-2025/prompt-injection.png)
+![Prompt Injection](./../public/ai-security-2025/prompt-injection.png)
 
----
+--
 
 ### Types of Prompt Injection
 
@@ -224,21 +218,22 @@ transition: slide
 * Cross Prompt Injection (XPIA)
   - MCP Vulnerabilities, etc.
 
----
+--
 
 ### Prompt Injection Controls
 
-- Clearer context
+- Clear context
+  - Remove invisible characters
+  - Disclose all context that was used (files, websites, etc.)
 - Content filtering
-- Dual LLM paradigm
-- Nanny Agents
+- [Dual LLM](https://simonwillison.net/2023/Apr/25/dual-llm-pattern/) / Nanny Agents
 - [CaMeL](https://arxiv.org/abs/2503.18813)/ Information Control Flow
 
 ---
 
-## Module: MCP Security
+## MCP Security
 
----
+--
 
 ### Issues with MCP
 
@@ -247,7 +242,7 @@ transition: slide
 * XPIA Risk
 * Context Poisoning
 
----
+--
 
 ### Using MCP Safely
 
@@ -256,54 +251,66 @@ transition: slide
 1. Use firewalls to ensure agents stay on guardrails
 1. Properly define resources and tools
 
----
+--
 
 ### MCP Security Specifications
 
+* [OAuth 2.1 Support](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization)
 * [Enhanced Tool Definition Interface](https://arxiv.org/html/2506.01333v1)
-* Oauth 2.0 Support
 
 ---
 
-## Module: Responsible AI
+## Responsible AI
 
----
+--
 
 ### Good Design Prevents Footguns
 
----
+--
 
 ### Human in the Loop
 
 - Protect users from themselves
+- User consent flows for all state-changing actions
+- Balance usability and security, be mindful of user fatigue
 
----
+--
 
 ### AI Disclosures
+
 - Disclose all AI usage
 - Explicit user consent for state-changing actions
 
----
+--
 
 ### Content Filtering
 
 - Prevent harmful/off-topic content
 
----
+--
 
 ### Agentic Security Principles
 
 1. Make sure agents can be turned off
-1. Network interactions should be logged
+1. Network interactions should be logged and firewalled
 1. Log who initiated the action, and input context
 1. Run workflows in ephemeral environments
-1. Do not use user secrets unless explicitly defined
+1. Do not give an agent access to sensitive data
 
 ---
 
-## Module: Incident Response for AI
+## Incident Response for AI
 
----
+--
+
+### New Challenges
+
+- Non-determinism
+- Higher media scrutiny
+- Potentially higher financial impact
+- Varying customer expectations
+
+--
 
 ### Principles
 
@@ -316,7 +323,7 @@ transition: slide
 
 ## Conclusion
 
----
+--
 
 ### Key Takeaways
 
@@ -328,8 +335,8 @@ transition: slide
 
 ---
 
-## Appendix
+## Further Reading
 
 - [Adversarial AI Reading List](https://github.com/rzhade3/adversarial-ai-reading-list)
-- [embracethered.com](https://embracethered.com/)
 - [Simon Willison Blog](https://simonwillison.net/tags/security/)
+- [embracethered.com](https://embracethered.com/)
